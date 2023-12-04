@@ -13,7 +13,7 @@ export const addRoom = asyncHandler(async (req, res) => {
 });
 
 export const getRooms = asyncHandler(async (req, res) => {
-  const rooms = await Room.find();
+  const rooms = await Room.find().sort({ number: 1 });
   res.json({ success: true, count: rooms.length, rooms });
 });
 
