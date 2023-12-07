@@ -25,7 +25,7 @@ export const getRooms = asyncHandler(async (req, res) => {
 });
 
 export const getPaginatedRooms = asyncHandler(async (req, res) => {
-  let { page = 1, limit = 5 } = req.query;
+  let { page = 1, limit = 12 } = req.query;
 
   page <= 1 && (page = 1);
 
