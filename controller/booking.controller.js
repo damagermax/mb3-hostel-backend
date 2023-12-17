@@ -1,6 +1,8 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import crypto from "crypto";
 
+import Booking from "../model/Booking.model.js";
+
 import ErrorResponse from "../utils/errorResponse.js";
 
 export const createBooking = asyncHandler(async (req, res) => {
@@ -17,6 +19,7 @@ export const createBooking = asyncHandler(async (req, res) => {
     // Do something with event
   }
 
-  // Do something with event
+  const b = await Booking.create({ email: "maxw@gmail.com", room_number: "2", full_name: "dshjbfia" });
+
   res.send(200);
 });
