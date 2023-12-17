@@ -8,7 +8,7 @@ export const verifyPaystackSignature = (req, res, next) => {
 
   if (hash == req.headers["x-paystack-signature"]) {
     next();
+  } else {
+    throw new ErrorResponse("Unauthorized", 401);
   }
-
-  throw new ErrorResponse("Unauthorized", 401);
 };
