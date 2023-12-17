@@ -7,6 +7,7 @@ import ErrorResponse from "../utils/errorResponse.js";
 
 export const createBooking = asyncHandler(async (req, res) => {
   const secret = process.env.PAYSTACK_SECRET_KEY;
+  console.log(secret);
 
   console.log("\n======================================WEBHOOK==========================");
 
@@ -16,10 +17,9 @@ export const createBooking = asyncHandler(async (req, res) => {
     const event = req.body;
     console.log(event);
 
+    await Booking.create({ email: "maxw@gmail.com", room_number: "2", full_name: "dshjbfia" });
     // Do something with event
   }
-
-  const b = await Booking.create({ email: "maxw@gmail.com", room_number: "2", full_name: "dshjbfia" });
 
   res.send(200);
 });
