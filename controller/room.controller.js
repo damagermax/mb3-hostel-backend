@@ -46,29 +46,29 @@ export const getPaginatedRooms = asyncHandler(async (req, res) => {
 });
 
 export const updateRoom = asyncHandler(async (req, res) => {
-  const roomId = req.params.id;
-  const room = await checkRoomExistence(roomId);
-
   const { number, price, floor, type, gender } = req.body;
-  const {
-    number: currentNumber,
-    price: currentPrice,
-    floor: currentFloor,
-    type: currentType,
-    gender: currentGender,
-  } = room;
+  const roomId = req.params.id;
 
-  const updatedFields = {
-    number: number !== undefined ? number : currentNumber,
-    price: price !== undefined ? price : currentPrice,
-    floor: floor !== undefined ? floor : currentFloor,
-    gender: gender !== undefined ? gender : currentGender,
-    type: type !== undefined ? type : currentType,
-  };
+  await checkRoomExistence(roomId);
 
-  const updateRoom = await Room.findByIdAndUpdate(roomId, updatedFields, {
-    new: true,
-  });
+  const matches = type.match(/\d+/);
+  const bedCount = parseInt(matches[0], 10);
+
+  const updateRoom = await Room.findByIdAndUpdate(
+    roomId,
+    {
+      number,
+      price,
+      floor,
+      gender,
+      type,
+      bed_left: bedCount,
+      number_of_bed: bedCount,
+    },
+    {
+      new: true,
+    }
+  );
 
   res.json({ success: true, room: updateRoom });
 });
