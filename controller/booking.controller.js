@@ -9,12 +9,12 @@ export const createBooking = asyncHandler(async (req, res) => {
 
   const {
     event,
-    metadata,
-    data: { paid, paid_at, amount, reference, channel },
+    amount,
+    data: { paid, paid_at, reference, channel, metadata },
   } = req.body;
 
   if (event == "charge.success") {
-    console.log(req.body);
+    console.log(`${metadata}`);
     await Booking.create({ paid, paid_at, amount, reference, channel, ...metadata });
   }
 

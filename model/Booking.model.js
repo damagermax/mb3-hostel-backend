@@ -9,7 +9,6 @@ const BookingSchema = new mongoose.Schema(
     phone: { type: String, required: true },
     room: { type: mongoose.Types.ObjectId, required: true },
     school: { type: mongoose.Types.ObjectId, required: true },
-    paid: { type: String, required: true },
     paid_at: { type: String, required: true },
     reference: { type: String, required: true },
     amount: { type: String, required: true },
