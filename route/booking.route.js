@@ -5,6 +5,6 @@ import { createBooking } from "../controller/booking.controller.js";
 
 const bookingRouter = Router();
 
-bookingRouter.route("/webhook/create").post(verifyPaystackSignature, createBooking);
+bookingRouter.route("/webhook/create").post(createBooking);
 
 export default bookingRouter;

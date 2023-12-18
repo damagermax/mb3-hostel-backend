@@ -8,7 +8,7 @@ const BookingSchema = new mongoose.Schema(
     gender: { type: String, required: true },
     phone: { type: String, required: true },
     room: { type: mongoose.Types.ObjectId, required: true },
-    school: { type: mongoose.Types.ObjectId, required: true },
+    school: { type: String, required: true },
     paid_at: { type: String, required: true },
     reference: { type: String, required: true },
     amount: { type: String, required: true },
