@@ -12,7 +12,7 @@ const roomRouter = express.Router();
 
 roomRouter.route("/").get(getRooms).post(addRoom);
 
-roomRouter.route("/users").get(getPaginatedRooms);
+roomRouter.route("/user").get(getPaginatedRooms);
 
 roomRouter.route("/:roomId").get(getRoomById).put(updateRoom).delete(deleteRoom);
 
