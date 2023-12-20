@@ -5,8 +5,6 @@ import Booking from "../model/Booking.model.js";
 import ErrorResponse from "../utils/errorResponse.js";
 
 export const createBooking = asyncHandler(async (req, res) => {
-  console.log("\n======================================WEBHOOK 20==========================");
-
   const {
     event,
     data: { amount, paid, paid_at, reference, channel, metadata },
@@ -17,4 +15,9 @@ export const createBooking = asyncHandler(async (req, res) => {
   }
 
   res.sendStatus(200);
+});
+
+export const getAllBookings = asyncHandler(async (req, res) => {
+  const allBooking = await Booking.find();
+  res.json({ success: true, bookings: allBooking, count: allBooking.length });
 });

@@ -24,12 +24,22 @@ export const getRooms = asyncHandler(async (req, res) => {
   res.json({ success: true, count: rooms.length, rooms });
 });
 
+export const getRoomById = asyncHandler(async (req, res) => {
+  const { roomId } = req.params;
+
+  const room = await checkRoomExistence(roomId);
+
+  if (room.bed_left == 0) throw new ErrorResponse("Room is fully booked");
+
+  res.json({ success: true, room });
+});
+
 export const getPaginatedRooms = asyncHandler(async (req, res) => {
   let { page = 1, limit = 12 } = req.query;
 
   page <= 1 && (page = 1);
 
-  const rooms = await Room.find()
+  const rooms = await Room.find({ bed_left: { $gt: 0 } })
     .limit(limit * 1)
     .skip((page - 1) * limit)
     .sort({ number: 1 });
@@ -47,7 +57,7 @@ export const getPaginatedRooms = asyncHandler(async (req, res) => {
 
 export const updateRoom = asyncHandler(async (req, res) => {
   const { number, price, floor, type, gender } = req.body;
-  const roomId = req.params.id;
+  const { roomId } = req.params;
 
   await checkRoomExistence(roomId);
 
@@ -74,7 +84,7 @@ export const updateRoom = asyncHandler(async (req, res) => {
 });
 
 export const deleteRoom = asyncHandler(async (req, res) => {
-  const roomId = req.params.id;
+  const { roomId } = req.params;
 
   const room = await checkRoomExistence(roomId);
   await room.deleteOne();

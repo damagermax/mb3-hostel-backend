@@ -13,6 +13,8 @@ const BookingSchema = new mongoose.Schema(
     reference: { type: String, required: true },
     amount: { type: String, required: true },
     channel: { type: String, required: true },
+    guardian_name: { type: String, required: true },
+    guardian_number: { type: String, required: true },
   },
   { timestamps: true }
 );
