@@ -4,7 +4,6 @@ const bookingSchema = new mongoose.Schema(
   {
     email: { type: String, trim: true, required: [true, "Please add an email"] },
     full_name: { type: String, required: true },
-    phone: { type: String, required: true },
     gender: { type: String, required: true },
     number: { type: String, required: true },
     room: { type: mongoose.Types.ObjectId, required: true },
