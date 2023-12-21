@@ -6,7 +6,7 @@ import { verifyPaystackSignature, verifyPayment } from "../middleware/paystack.m
 
 const bookingRouter = Router();
 
-bookingRouter.route("/webhook").post(verifyPaystackSignature, verifyPayment, createBooking);
+bookingRouter.route("/webhook").post(verifyPayment, createBooking);
 
 bookingRouter.route("/").get(getAllBookings);
 
