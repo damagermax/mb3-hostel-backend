@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const BookingSchema = new mongoose.Schema(
+const bookingSchema = new mongoose.Schema(
   {
     email: { type: String, trim: true, required: [true, "Please add an email"] },
     full_name: { type: String, required: true },
@@ -19,4 +19,12 @@ const BookingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.model("booking", BookingSchema);
+bookingSchema.set("toJSON", {
+  virtuals: true,
+  versionKey: false,
+  transform: function (doc, ret) {
+    delete ret._id;
+  },
+});
+
+export default mongoose.model("booking", bookingSchema);

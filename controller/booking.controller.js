@@ -1,8 +1,7 @@
-import asyncHandler from "../middleware/asyncHandler.js";
+import asyncHandler from "../utils/asyncHandler.js";
+import ErrorResponse from "../utils/errorResponse.js";
 
 import Booking from "../model/Booking.model.js";
-
-import ErrorResponse from "../utils/errorResponse.js";
 
 export const createBooking = asyncHandler(async (req, res) => {
   const {

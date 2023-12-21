@@ -1,8 +1,7 @@
-import asyncHandler from "../middleware/asyncHandler.js";
+import asyncHandler from "../utils/asyncHandler.js";
+import ErrorResponse from "../utils/errorResponse.js";
 
 import Room from "../model/Room.model.js";
-
-import ErrorResponse from "../utils/errorResponse.js";
 
 export const addRoom = asyncHandler(async (req, res) => {
   const { number, price, floor, type, gender, bed_left } = req.body;
@@ -34,7 +33,7 @@ export const getRoomById = asyncHandler(async (req, res) => {
   res.json({ success: true, room });
 });
 
-export const getPaginatedRooms = asyncHandler(async (req, res) => {
+export const getAvailableRooms = asyncHandler(async (req, res) => {
   let { page = 1, limit = 12 } = req.query;
 
   page <= 1 && (page = 1);
